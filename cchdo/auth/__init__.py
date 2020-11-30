@@ -72,7 +72,7 @@ def _migrate_uow_config():
     os.remove(CONFIG_FILE)
 
     try:
-        logger.info("Removing legacy config dir")
+        logger.debug("Removing legacy config dir")
         os.rmdir(CONFIG_DIR)
     except OSError:
         logger.info("Legacy config dir had files other than the config file, leaving in place")
@@ -98,6 +98,7 @@ def _load_config():
 def _write_config(config):
     _create_config_dir()
     cfg_path = os.path.join(dirs.user_config_dir, CONFIG_FILE)
+    logger.debug("Writing config to: %s", cfg_path)
     with open(cfg_path, "w") as f:
         config.write(f)
 
