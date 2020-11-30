@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from .. import _migrate_uow_config, _create_config_dir, dirs, _check_api_key
+from .. import _migrate_uow_config, _create_config_dir, dirs, _check_apikey
 
 TEST_KEY = "WyIyIiwiJDUkcm91bmRzPTUzNTAwMCRmYWtlX2RhdGEiLCJfZmFrZV9kYXRhXyJd.fake.fake"
 
@@ -25,7 +25,7 @@ def testLegacyAuth(fs):
     assert _migrate_uow_config() is True
 
 def testCheckAPIKey():
-    assert _check_api_key(TEST_KEY)
+    assert _check_apikey(TEST_KEY)
 
     with pytest.raises(ValueError):
-        _check_api_key("bad") 
+        _check_apikey("bad") 
