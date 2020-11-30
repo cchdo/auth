@@ -1,5 +1,5 @@
 import os
-from configparser import ConfigParser
+from configparser import ConfigParser, NoSectionError
 import logging
 
 from requests.auth import AuthBase
@@ -67,12 +67,7 @@ def _migrate_uow_config():
     apikey = config.get('api', 'api_key')
     _check_apikey(apikey)
 
-    new_config = _load_config()
-    if not new_config.has_section("cchdo.auth"):
-        new_config.add_section("cchdo.auth")
-    
-    new_config.set("cchdo.auth", "api_key", apikey)
-    _write_config(new_config)
+    _write_apikey(apikey)
 
     os.remove(CONFIG_FILE)
 
@@ -83,6 +78,16 @@ def _migrate_uow_config():
         logger.info("Legacy config dir had files other than the config file, leaving in place")
 
     return True
+
+def _write_apikey(apikey):
+    config = _load_config()
+
+    if not config.has_section("cchdo.auth"):
+        config.add_section("cchdo.auth")
+
+    config.set("cchdo.auth", "api_key", apikey)
+
+    _write_config(config)
 
 def _load_config():
     cfg_path = os.path.join(dirs.user_config_dir, CONFIG_FILE)
@@ -106,8 +111,14 @@ def get_apikey():
     except KeyError:
         pass
 
-    return _load_config().get("cchdo.auth", "api_key")
+    try:
+        return _load_config().get("cchdo.auth", "api_key")
+    except NoSectionError:
+        pass
 
+    logger.warn("An API Key could not be loaded from any source, many (not all) CCHDO API calls will fail")
+    return ""
+    
 class CCHDOAuth(AuthBase):
     def __init__(self, apikey=None):
         if apikey is None:
