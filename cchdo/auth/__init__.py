@@ -11,6 +11,9 @@ try:
 except ImportError:
     COLAB = False
 
+if COLAB:
+    import colab_env
+
 logger = logging.getLogger(__name__)
 
 dirs = AppDirs("edu.ucsd.cchdo", "cchdo")
