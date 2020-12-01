@@ -6,14 +6,14 @@ from requests.auth import AuthBase
 from appdirs import AppDirs
 
 try:
-    import google.colab
+    import google.colab  # noqa
 
     COLAB = True
 except ImportError:
     COLAB = False
 
 if COLAB:
-    import colab_env
+    import colab_env  # noqa
 
 logger = logging.getLogger(__name__)
 
