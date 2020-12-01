@@ -2,7 +2,14 @@ import os
 
 import pytest
 
-from .. import _migrate_uow_config, _create_config_dir, dirs, _check_apikey, CONFIG_FILE, get_apikey
+from .. import (
+    _migrate_uow_config,
+    _create_config_dir,
+    dirs,
+    _check_apikey,
+    CONFIG_FILE,
+    get_apikey,
+)
 
 TEST_KEY = "WyIyIiwiJDUkcm91bmRzPTUzNTAwMCRmYWtlX2RhdGEiLCJfZmFrZV9kYXRhXyJd.fake.fake"
 
@@ -12,10 +19,12 @@ api_end_point = https://cchdo.ucsd.edu/api/v1
 api_key = {TEST_KEY}
 """
 
+
 def testCreateConfigDir(fs):
     _create_config_dir()
 
     assert os.path.exists(dirs.user_config_dir)
+
 
 def testLegacyAuth(fs):
     LEGACY_CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "hdo_uow")
@@ -32,8 +41,9 @@ def testLegacyAuth(fs):
     # Check that something "valid looking" was written
     assert _check_apikey(get_apikey())
 
+
 def testCheckAPIKey():
     assert _check_apikey(TEST_KEY)
 
     with pytest.raises(ValueError):
-        _check_apikey("bad") 
+        _check_apikey("bad")

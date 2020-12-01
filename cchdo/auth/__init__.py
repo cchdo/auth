@@ -7,6 +7,7 @@ from appdirs import AppDirs
 
 try:
     import google.colab
+
     COLAB = True
 except ImportError:
     COLAB = False
@@ -22,8 +23,10 @@ CONFIG_FILE = "config.cfg"
 
 CCHDO_PREFIX = "https://cchdo.ucsd.edu"
 
+
 def _create_config_dir():
     os.makedirs(dirs.user_config_dir, exist_ok=True)
+
 
 def _check_apikey(apikey):
     """check to see if the api key "looks" ok
@@ -49,8 +52,9 @@ def _check_apikey(apikey):
     except Exception as ex:
         logger.error("api key payload could not be decoded as valid JSON")
         raise ValueError("API key payload not valid") from ex
-    
+
     return True
+
 
 def _migrate_uow_config():
     # lifted directly from the uow code
@@ -67,7 +71,7 @@ def _migrate_uow_config():
     config = ConfigParser()
     config.read(CONFIG_FILE)
 
-    apikey = config.get('api', 'api_key')
+    apikey = config.get("api", "api_key")
     _check_apikey(apikey)
 
     _write_apikey(apikey)
@@ -78,9 +82,12 @@ def _migrate_uow_config():
         logger.debug("Removing legacy config dir")
         os.rmdir(CONFIG_DIR)
     except OSError:
-        logger.info("Legacy config dir had files other than the config file, leaving in place")
+        logger.info(
+            "Legacy config dir had files other than the config file, leaving in place"
+        )
 
     return True
+
 
 def _write_apikey(apikey):
     config = _load_config()
@@ -92,11 +99,13 @@ def _write_apikey(apikey):
 
     _write_config(config)
 
+
 def _load_config():
     cfg_path = os.path.join(dirs.user_config_dir, CONFIG_FILE)
     config = ConfigParser()
     config.read(cfg_path)
     return config
+
 
 def _write_config(config):
     _create_config_dir()
@@ -104,6 +113,7 @@ def _write_config(config):
     logger.debug("Writing config to: %s", cfg_path)
     with open(cfg_path, "w") as f:
         config.write(f)
+
 
 def get_apikey():
     """
@@ -120,9 +130,12 @@ def get_apikey():
     except NoSectionError:
         pass
 
-    logger.warn("An API Key could not be loaded from any source, many (not all) CCHDO API calls will fail")
+    logger.warn(
+        "An API Key could not be loaded from any source, many (not all) CCHDO API calls will fail"
+    )
     return ""
-    
+
+
 class CCHDOAuth(AuthBase):
     def __init__(self, apikey=None):
         if apikey is None:
