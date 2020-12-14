@@ -31,7 +31,7 @@ def testLegacyAuth(fs):
     LEGACY_CONFIG_FILE = os.path.join(LEGACY_CONFIG_DIR, "config")
     fs.create_file(LEGACY_CONFIG_FILE, contents=LEGACY_CREDS)
 
-    assert _migrate_uow_config() is True
+    _migrate_uow_config()
 
     assert not os.path.exists(LEGACY_CONFIG_FILE)
     assert not os.path.exists(LEGACY_CONFIG_DIR)

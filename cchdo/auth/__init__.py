@@ -1,7 +1,9 @@
 import os
 from configparser import ConfigParser, NoSectionError
 import logging
+from typing import Optional
 
+from requests import PreparedRequest
 from requests.auth import AuthBase
 from appdirs import AppDirs
 
@@ -24,11 +26,11 @@ CONFIG_FILE = "config.cfg"
 CCHDO_PREFIX = "https://cchdo.ucsd.edu"
 
 
-def _create_config_dir():
+def _create_config_dir() -> None:
     os.makedirs(dirs.user_config_dir, exist_ok=True)
 
 
-def _check_apikey(apikey):
+def _check_apikey(apikey: str) -> bool:
     """check to see if the api key "looks" ok
 
     It cannot validate without the secrets but the
@@ -56,7 +58,7 @@ def _check_apikey(apikey):
     return True
 
 
-def _migrate_uow_config():
+def _migrate_uow_config() -> None:
     # lifted directly from the uow code
     CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "hdo_uow")
     CONFIG_FILE = os.path.join(CONFIG_DIR, "config")
@@ -74,7 +76,7 @@ def _migrate_uow_config():
     apikey = config.get("api", "api_key")
     _check_apikey(apikey)
 
-    _write_apikey(apikey)
+    write_apikey(apikey)
 
     os.remove(CONFIG_FILE)
 
@@ -86,10 +88,8 @@ def _migrate_uow_config():
             "Legacy config dir had files other than the config file, leaving in place"
         )
 
-    return True
 
-
-def _write_apikey(apikey):
+def write_apikey(apikey: str) -> None:
     config = _load_config()
 
     if not config.has_section("cchdo.auth"):
@@ -100,14 +100,14 @@ def _write_apikey(apikey):
     _write_config(config)
 
 
-def _load_config():
+def _load_config() -> ConfigParser:
     cfg_path = os.path.join(dirs.user_config_dir, CONFIG_FILE)
     config = ConfigParser()
     config.read(cfg_path)
     return config
 
 
-def _write_config(config):
+def _write_config(config) -> None:
     _create_config_dir()
     cfg_path = os.path.join(dirs.user_config_dir, CONFIG_FILE)
     logger.debug("Writing config to: %s", cfg_path)
@@ -115,8 +115,13 @@ def _write_config(config):
         config.write(f)
 
 
-def get_apikey():
-    """
+def get_apikey() -> str:
+    """Retrieves the apikey from the first source available
+
+    Checks the following in order:
+    
+    * The environment variable ``CCHDO_AUTH_API_KEY``
+    * The local config file, which has a platform dependent location
     """
     _migrate_uow_config()
 
@@ -137,14 +142,13 @@ def get_apikey():
 
 
 class CCHDOAuth(AuthBase):
-    def __init__(self, apikey=None):
+    def __init__(self, apikey: Optional[str] = None):
         if apikey is None:
             apikey = get_apikey()
         self._apikey = apikey
 
-    def __call__(self, r):
-        if not r.url.startswith(CCHDO_PREFIX):
-            return r
+    def __call__(self, r: PreparedRequest) -> PreparedRequest:
+        if r.url is not None and r.url.startswith(CCHDO_PREFIX):
+            r.headers["X-Authentication-Token"] = self._apikey
 
-        r.headers["X-Authentication-Token"] = self._apikey
         return r
