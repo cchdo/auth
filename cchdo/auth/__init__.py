@@ -21,12 +21,22 @@ logger = logging.getLogger(__name__)
 
 dirs = AppDirs("edu.ucsd.cchdo", "cchdo")
 
-CONFIG_FILE = "config.cfg"
+CONFIG_FILE = os.path.join(dirs.user_config_dir, "config.cfg")
 
 CCHDO_PREFIX = "https://cchdo.ucsd.edu"
 
 
 def _create_config_dir() -> None:
+    """Creates the user config dir using ``appdirs.user_config_dir``
+
+    The actual location is system dependent and can be found by doing the following:
+
+    >>> from cchdo.auth import dirs
+    >>> dirs.user_config_dir
+    '/home/vscode/.config/edu.ucsd.cchdo'
+
+    The above being inside the devcontainer (linux) used for this project.
+    """
     os.makedirs(dirs.user_config_dir, exist_ok=True)
 
 
@@ -59,26 +69,29 @@ def _check_apikey(apikey: str) -> bool:
 
 
 def _migrate_uow_config() -> None:
-    # lifted directly from the uow code
+    """Migrates the old uow config file to the new appdirs defined location.
+
+    Will remove the old config file and attempt to removed the containing directory.
+    """
     CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".config", "hdo_uow")
-    CONFIG_FILE = os.path.join(CONFIG_DIR, "config")
+    LEGACY_CONFIG_FILE = os.path.join(CONFIG_DIR, "config")
 
     logger.debug("Checking to see if legacy config needs to me migrated")
 
-    if not os.path.isfile(CONFIG_FILE):
+    if not os.path.isfile(LEGACY_CONFIG_FILE):
         # file does not exist, so nothing to do
         return
 
     logger.info("A legacy hdo_uow config was found, migrating to standardized location")
     config = ConfigParser()
-    config.read(CONFIG_FILE)
+    config.read(LEGACY_CONFIG_FILE)
 
     apikey = config.get("api", "api_key")
     _check_apikey(apikey)
 
     write_apikey(apikey)
 
-    os.remove(CONFIG_FILE)
+    os.remove(LEGACY_CONFIG_FILE)
 
     try:
         logger.debug("Removing legacy config dir")
@@ -90,6 +103,10 @@ def _migrate_uow_config() -> None:
 
 
 def write_apikey(apikey: str) -> None:
+    """Write the apikey to the config file
+
+    This will create the config file and containing directories if needed.
+    """
     config = _load_config()
 
     if not config.has_section("cchdo.auth"):
@@ -101,17 +118,21 @@ def write_apikey(apikey: str) -> None:
 
 
 def _load_config() -> ConfigParser:
-    cfg_path = os.path.join(dirs.user_config_dir, CONFIG_FILE)
+    """Loads the config file into a ConfigParser object
+    """
     config = ConfigParser()
-    config.read(cfg_path)
+    config.read(CONFIG_FILE)
     return config
 
 
-def _write_config(config) -> None:
+def _write_config(config: ConfigParser) -> None:
+    """Write the ConfigParser object to the config file.
+
+    Will create the file and containing directories if needed.
+    """
     _create_config_dir()
-    cfg_path = os.path.join(dirs.user_config_dir, CONFIG_FILE)
-    logger.debug("Writing config to: %s", cfg_path)
-    with open(cfg_path, "w") as f:
+    logger.debug("Writing config to: %s", CONFIG_FILE)
+    with open(CONFIG_FILE, "w") as f:
         config.write(f)
 
 
@@ -142,6 +163,19 @@ def get_apikey() -> str:
 
 
 class CCHDOAuth(AuthBase):
+    """AuthClass for use with the requests library
+
+    If the request URI is detected to be for the CCHDO api endpoint, it will automatically set the correct headers.
+
+    If the apikey is given as a string when initialized, it will use that as the key.
+    When initialized with no arguments, will attempt to load the apikey with :meth:`cchdo.auth.get_apikey`.
+
+    >>> import requests
+    >>> from cchdo.auth import CCHDOAuth
+    >>> cruises = requests.get("https://cchdo.ucsd.edu/api/v1/cruise", auth=CCHDOAuth()).json()
+
+    It is highly recomended that the :obj:`cchdo.auth.session.session` object be used instead of manually including this auth class
+    """
     def __init__(self, apikey: Optional[str] = None):
         if apikey is None:
             apikey = get_apikey()
