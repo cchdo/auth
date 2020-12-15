@@ -131,12 +131,47 @@
         </label>
         <div class="section" id="api-reference">
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-cchdo.auth">
-<span id="public"></span><h2>Public<a class="headerlink" href="#module-cchdo.auth" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
+<div class="section" id="public">
+<h2>Public<a class="headerlink" href="#public" title="Permalink to this headline">¶</a></h2>
+<dl class="py data">
+<dt id="cchdo.auth.dirs">
+<code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">dirs</code><em class="property">: appdirs.AppDirs</em><a class="headerlink" href="#cchdo.auth.dirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>The preconfigured AppDirs instance which has the following read only properties:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user_data_dir</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user_config_dir</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user_cache_dir</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">site_data_dir</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">site_config_dir</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user_log_dir</span></code></p></li>
+</ul>
+<p>The actual values are platform dependent.</p>
+</dd></dl>
+<dl class="py data">
+<dt id="cchdo.auth.CONFIG_FILE">
+<code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">CONFIG_FILE</code><em class="property">: str</em><a class="headerlink" href="#cchdo.auth.CONFIG_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>A string containing the path to the config file on the running platform.</p>
+<p>example in the devcontainer (linux):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth</span> <span class="kn">import</span> <span class="n">CONFIG_FILE</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">CONFIG_FILE</span>
+<span class="go">'/home/vscode/.config/edu.ucsd.cchdo/config.cfg'</span>
+</pre></div>
+</div>
+</dd></dl>
+<span class="target" id="module-cchdo.auth"></span><dl class="py class">
 <dt id="cchdo.auth.CCHDOAuth">
 <em class="property">class </em><code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">CCHDOAuth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">apikey</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cchdo.auth.CCHDOAuth" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>AuthClass for use with the requests library</p>
+<p>If the request URI is detected to be for the CCHDO api endpoint, it will automatically set the correct headers.</p>
+<p>If the apikey is given as a string when initialized, it will use that as the key.
+When initialized with no arguments, will attempt to load the apikey with <a class="reference internal" href="#cchdo.auth.get_apikey" title="cchdo.auth.get_apikey"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cchdo.auth.get_apikey()</span></code></a>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth</span> <span class="kn">import</span> <span class="n">CCHDOAuth</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cruises</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"https://cchdo.ucsd.edu/api/v1/cruise"</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">CCHDOAuth</span><span class="p">())</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>It is highly recomended that the <code class="xref py py-obj docutils literal notranslate"><span class="pre">cchdo.auth.session.session</span></code> object be used instead of manually including this auth class</p>
+</dd></dl>
 <dl class="py function">
 <dt id="cchdo.auth.get_apikey">
 <code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">get_apikey</code><span class="sig-paren">(</span><span class="sig-paren">)</span> → str<a class="headerlink" href="#cchdo.auth.get_apikey" title="Permalink to this definition">¶</a></dt>
@@ -150,7 +185,9 @@
 <dl class="py function">
 <dt id="cchdo.auth.write_apikey">
 <code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">write_apikey</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">apikey</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> → None<a class="headerlink" href="#cchdo.auth.write_apikey" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Write the apikey to the config file</p>
+<p>This will create the config file and containing directories if needed.</p>
+</dd></dl>
 </div>
 <div class="section" id="private">
 <h2>Private<a class="headerlink" href="#private" title="Permalink to this headline">¶</a></h2>
@@ -164,23 +201,38 @@ payload can be checked to see if it at least decodes</p>
 <dl class="py function">
 <dt>
 <code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">_create_config_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span> → None</dt>
-<dd></dd></dl>
+<dd><p>Creates the user config dir using <code class="docutils literal notranslate"><span class="pre">appdirs.user_config_dir</span></code></p>
+<p>The actual location is system dependent and can be found by doing the following:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth</span> <span class="kn">import</span> <span class="n">dirs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dirs</span><span class="o">.</span><span class="n">user_config_dir</span>
+<span class="go">'/home/vscode/.config/edu.ucsd.cchdo'</span>
+</pre></div>
+</div>
+<p>The above being inside the devcontainer (linux) used for this project.</p>
+</dd></dl>
 <dl class="py function">
 <dt>
 <code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">_load_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span> → configparser.ConfigParser</dt>
-<dd></dd></dl>
+<dd><p>Loads the config file into a ConfigParser object</p>
+</dd></dl>
 <dl class="py function">
 <dt>
 <code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">_migrate_uow_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span> → None</dt>
-<dd></dd></dl>
+<dd><p>Migrates the old uow config file to the new appdirs defined location.</p>
+<p>Will remove the old config file and attempt to removed the containing directory.</p>
+</dd></dl>
 <dl class="py function">
 <dt>
-<code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">_write_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span> → None</dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">_write_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="p">:</span> <span class="n">configparser.ConfigParser</span></em><span class="sig-paren">)</span> → None</dt>
+<dd><p>Write the ConfigParser object to the config file.</p>
+<p>Will create the file and containing directories if needed.</p>
+</dd></dl>
 <dl class="py function">
 <dt>
 <code class="sig-prename descclassname">cchdo.auth.</code><code class="sig-name descname">write_apikey</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">apikey</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> → None</dt>
-<dd></dd></dl>
+<dd><p>Write the apikey to the config file</p>
+<p>This will create the config file and containing directories if needed.</p>
+</dd></dl>
 </div>
 </div>
 
@@ -231,7 +283,7 @@ payload can be checked to see if it at least decodes</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">API Reference</a><ul>
-<li><a class="reference internal" href="#module-cchdo.auth">Public</a></li>
+<li><a class="reference internal" href="#public">Public</a></li>
 <li><a class="reference internal" href="#private">Private</a></li>
 </ul>
 </li>
