@@ -118,8 +118,7 @@ def write_apikey(apikey: str) -> None:
 
 
 def _load_config() -> ConfigParser:
-    """Loads the config file into a ConfigParser object
-    """
+    """Loads the config file into a ConfigParser object"""
     config = ConfigParser()
     config.read(CONFIG_FILE)
     return config
@@ -140,7 +139,7 @@ def get_apikey() -> str:
     """Retrieves the apikey from the first source available
 
     Checks the following in order:
-    
+
     * The environment variable ``CCHDO_AUTH_API_KEY``
     * The local config file, which has a platform dependent location
     """
@@ -176,6 +175,7 @@ class CCHDOAuth(AuthBase):
 
     It is highly recomended that the :obj:`cchdo.auth.session.session` object be used instead of manually including this auth class
     """
+
     def __init__(self, apikey: Optional[str] = None):
         if apikey is None:
             apikey = get_apikey()
