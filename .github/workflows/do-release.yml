@@ -27,5 +27,4 @@ jobs:
         python -m pep517.build --source --binary . --out-dir dist
     - name: Test Wheel
       run: |
-        cd dist && pip install cchdo.auth*.whl[selftest] && python -m pytest --pyargs cchdo.auth
-        twine check *
+        cd dist && pip install $(ls *.whl)'[selftest]' && python -m pytest --pyargs cchdo.auth && twine check *
