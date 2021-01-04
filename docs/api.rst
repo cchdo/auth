@@ -38,7 +38,7 @@ Private
 -------
 .. automodule:: cchdo.auth
    :members:
-   :exclude-members: CCHDOAuth, get_apikey
+   :exclude-members: CCHDOAuth, get_apikey, write_apikey
    :private-members:
    :undoc-members:
    :noindex:

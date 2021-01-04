@@ -11,6 +11,7 @@ Welcome to cchdo.auth's documentation!
    :caption: Contents:
 
    installation
+   config
    api
 
 
