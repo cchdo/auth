@@ -1,0 +1,287 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Usage" href="usage.html" /><link rel="prev" title="Installation" href="installation.html" />
+
+    <meta name="generator" content="sphinx-3.3.1, furo 2020.12.30.beta24"/>
+        <title>Configuring - cchdo.auth documentation</title>
+      <link rel="stylesheet" href="_static/styles/furo.css?digest=33d2fc4f3f180ec1ffc6524e273e21d7d58cbe49">
+    <link rel="stylesheet" href="_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="_static/pygments_dark.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" href="_static/styles/furo-extensions.css?digest=26485485040e7aaf717c13fd0188a5ad2c2deb60">
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script defer="defer" src="_static/jquery.js"></script>
+    <script defer="defer" src="_static/underscore.js"></script>
+    <script defer="defer" src="_static/doctools.js"></script>
+    <script defer="defer" src="_static/language_data.js"></script>
+    <script defer src="_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">cchdo.auth  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">cchdo.auth  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Configuring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="configuring">
+<h1>Configuring<a class="headerlink" href="#configuring" title="Permalink to this headline">¶</a></h1>
+<p>If there is an existing uow config file, it will be migrated automatically to the locations used by <code class="docutils literal notranslate"><span class="pre">cchdo.auth</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You must update <code class="docutils literal notranslate"><span class="pre">cchdo.uow</span></code> to the earliest version which also uses <code class="docutils literal notranslate"><span class="pre">cchdo.auth</span></code>, v1.4.1.</p>
+</div>
+<p>There are several ways the library can get the API key, choose the method most appropriate for your environment.</p>
+<div class="section" id="local-file-config">
+<h2>Local File Config<a class="headerlink" href="#local-file-config" title="Permalink to this headline">¶</a></h2>
+<p>This method will create a config file that will persist between running programs that use this library.
+Since the location of this file is platform specific, you must use the tools provided to create/change this file.</p>
+<div class="section" id="using-command-line">
+<h3>Using Command Line<a class="headerlink" href="#using-command-line" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">cchdo.auth</span></code> is an executable module.
+Once it is installed it can be run in a shell using:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -m cchdo.auth
+</pre></div>
+</div>
+<p>This has a single command <code class="docutils literal notranslate"><span class="pre">apikey</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -m cchdo.auth apikey &lt;key&gt;
+</pre></div>
+</div>
+<p>Replace the entirety of <code class="docutils literal notranslate"><span class="pre">&lt;key&gt;</span></code> with your CCHDO api key.</p>
+</div>
+<div class="section" id="using-the-api">
+<h3>Using the API<a class="headerlink" href="#using-the-api" title="Permalink to this headline">¶</a></h3>
+<p>You can create the config file from inside python.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth</span> <span class="kn">import</span> <span class="n">write_apikey</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_apikey</span><span class="p">(</span><span class="s2">"key"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Be sure to pass in the correct apikey as a string.</p>
+</div>
+</div>
+<div class="section" id="environment-variable-config">
+<h2>Environment Variable Config<a class="headerlink" href="#environment-variable-config" title="Permalink to this headline">¶</a></h2>
+<p>The library will attempt to load the value of the envar <code class="docutils literal notranslate"><span class="pre">CCHDO_AUTH_API_KEY</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ CCHDO_AUTH_API_KEY=test python
+
+Python 3.8.6 (default, Dec 18 2020, 05:24:40)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; from cchdo.auth import get_apikey
+&gt;&gt;&gt; get_apikey()
+'test'
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If present, the envar will take precedence over the local config file.</p>
+</div>
+</div>
+<div class="section" id="google-colab-config">
+<h2>Google Colab Config<a class="headerlink" href="#google-colab-config" title="Permalink to this headline">¶</a></h2>
+<p>Configuring inside google colab is a little tricky due to the non persistence of the sessions.
+We also want to be able to share the notebooks without worrying about secrets leaking out, i.e. we don’t want to put api keys directly in the notebooks.
+To accomplish this, there is a mechanism to load a file from google drive and inject its contents into environment variables inside the google colab session.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since you can have multiple accounts in google colab and google drive, make sure to use the same account in both locations.</p>
+</div>
+<p>Create a text (utf8) file with the exact filename <code class="docutils literal notranslate"><span class="pre">vars.env</span></code> containing the following contents:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>COLAB_ENV = Active
+CCHDO_AUTH_API_KEY = replace_with_apikey
+</pre></div>
+</div>
+<p>Where your actual api key is in place of <code class="docutils literal notranslate"><span class="pre">replace_with_apikey</span></code>.</p>
+<p>Then upload this file to the “root” of your google drive, which is the location when you click on “My Drive” on the left menu/nav area of google drive.
+Do not put it anywhere else (e.g. in a folder, team drive, etc..)
+Because this file does not have a .txt extension, google drive will think it is “binary” and refuse to show you a preview when it is clicked on.</p>
+<p>The first time you do something in colab which tries to find an api key, you will be walked though an authentication workflow to give the current colab session access to your google drive.
+Access to your google drive will persist until the underlying colab session is stopped, you can restart the runtime and not need to go though the authentication workflow.</p>
+</div>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="usage.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Usage</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="installation.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Installation</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2020-2021, Regents of the University of California
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="_sources/config.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Configuring</a><ul>
+<li><a class="reference internal" href="#local-file-config">Local File Config</a><ul>
+<li><a class="reference internal" href="#using-command-line">Using Command Line</a></li>
+<li><a class="reference internal" href="#using-the-api">Using the API</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#environment-variable-config">Environment Variable Config</a></li>
+<li><a class="reference internal" href="#google-colab-config">Google Colab Config</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </main>
+</div>
+  </body>
+</html>
