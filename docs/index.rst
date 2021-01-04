@@ -12,6 +12,7 @@ Welcome to cchdo.auth's documentation!
 
    installation
    config
+   usage
    api
 
 
