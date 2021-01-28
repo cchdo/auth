@@ -50,6 +50,7 @@ def _check_apikey(apikey: str) -> bool:
     from base64 import b64decode
 
     payload, *_ = apikey.split(".")
+    payload = payload + "===="
 
     try:
         logger.debug("Base64 decoding api key: %s...", apikey[:10])
