@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = "cchdo.auth"
-copyright = "2020-2021, Regents of the University of California"
+copyright = "2020-2022, Regents of the University of California"
 author = "Andrew Barna"
 
 
