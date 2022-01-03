@@ -5,3 +5,15 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools_scm]
 write_to = "cchdo/auth/_version.py"
 write_to_template = 'version = "{version}"'
+
+
+[tool.mypy]
+
+[[tool.mypy.overrides]]
+module = [
+    "pytest.*",
+    "appdirs",
+    "colab_env",
+    "google.*",
+]
+ignore_missing_imports = true
