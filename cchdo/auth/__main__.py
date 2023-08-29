@@ -6,6 +6,7 @@ from .session import session as s
 
 CCHDO_API = "https://cchdo.ucsd.edu/api/v1"
 CRUISE_API = f"{CCHDO_API}/cruise"
+FILE_API = f"{CCHDO_API}/file"
 
 
 def json_edit_loop(metadata):
@@ -87,6 +88,40 @@ def edit_cruise(expocode):
         break
 
     click.echo("Cruise Edit done!")
+
+
+@cli.command()
+@click.argument("file_id")
+def edit_file(file_id):
+    """Edit a file json in your $EDITOR
+
+    file_id is the internal id of the file to edit
+    """
+    click.echo(f"Loading file {file_id}")
+
+    file_json = s.get(f"{FILE_API}/{file_id}").json()
+
+    click.echo("Opening editor")
+
+    edited_metadata = json_edit_loop(file_json)
+
+    click.echo(f"PUTting to file: {file_id}")
+
+    while True:
+        r = s.put(f"{FILE_API}/{file_id}", json=edited_metadata)
+
+        if r.status_code != 201:
+            click.echo(f"Error message: {r.text}")
+            click.confirm(
+                "Edited file was rejected by the API, would you like try fixing?",
+                abort=True,
+            )
+            edited_metadata = json_edit_loop(edited_metadata)
+            continue
+
+        break
+
+    click.echo("File Edit done!")
 
 
 if __name__ == "__main__":
