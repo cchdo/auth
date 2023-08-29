@@ -3,11 +3,11 @@ import os
 import pytest
 
 from .. import (
-    _migrate_uow_config,
-    _create_config_dir,
-    dirs,
-    _check_apikey,
     CONFIG_FILE,
+    _check_apikey,
+    _create_config_dir,
+    _migrate_uow_config,
+    dirs,
     get_apikey,
 )
 

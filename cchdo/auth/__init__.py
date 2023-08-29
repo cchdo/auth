@@ -1,11 +1,11 @@
+import logging
 import os
 from configparser import ConfigParser, NoSectionError
-import logging
 from typing import Optional
 
+from appdirs import AppDirs
 from requests import PreparedRequest
 from requests.auth import AuthBase
-from appdirs import AppDirs
 
 try:
     import google.colab  # noqa

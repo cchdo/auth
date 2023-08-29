@@ -10,9 +10,7 @@ def cli():
 @click.argument("apikey")
 def apikey(apikey):
     """Write the API key to the config file, creating if needed"""
-    from . import _check_apikey
-    from . import write_apikey
-    from . import CONFIG_FILE
+    from . import CONFIG_FILE, _check_apikey, write_apikey
 
     try:
         _check_apikey(apikey)
