@@ -1,11 +1,62 @@
 [build-system]
-requires = ["setuptools>=30.3.0", "wheel", "setuptools_scm[toml]>=3.4"]
+requires = ["setuptools>=68", "setuptools_scm>=7"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-write_to = "cchdo/auth/_version.py"
-write_to_template = 'version = "{version}"'
+fallback_version = "999"
 
+[project]
+name = "cchdo.auth"
+authors = [{name = "cchdo", email = "cchdo@ucsd.edu"}]
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.10"
+dynamic = ["version"]
+license = {text = "BSD 3-clause"}
+dependencies = [
+  "requests>=2.23.0",
+  "click>=7.0.0",
+  "appdirs>=1.4.0",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+
+[project.urls]
+Homepage = "https://cchdo.ucsd.edu/"
+Documentation = "https://cchdo.github.io/auth"
+Repository = "https://github.com/cchdo/auth.git"
+
+[project.optional-dependencies]
+selftest = [
+    "pytest",
+    "pyfakefs",
+]
+dev = [
+    "cchdo.auth[selftest]",
+    "coverage",
+    "pytest-cov",
+    "pre-commit",
+    "requests-mock",
+    "mypy",
+    "types-requests",
+    "ruff",
+]
+docs = [
+    "Sphinx",
+    "furo",
+]
+complete = [
+    "cchdo.auth[dev,docs]"
+]
 
 [tool.mypy]
 namespace_packages = true

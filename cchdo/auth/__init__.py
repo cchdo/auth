@@ -1,6 +1,7 @@
 import logging
 import os
 from configparser import ConfigParser, NoSectionError
+from importlib.metadata import PackageNotFoundError, version
 
 from appdirs import AppDirs
 from requests import PreparedRequest
@@ -12,6 +13,13 @@ try:
     COLAB = True
 except ImportError:
     COLAB = False
+
+__version__: str = "999"
+
+try:
+    __version__ = version(__name__)
+except PackageNotFoundError:
+    pass
 
 logger = logging.getLogger(__name__)
 
