@@ -248,11 +248,11 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
 <section id="python-requirements">
 <h2>Python Requirements<a class="headerlink" href="#python-requirements" title="Link to this heading">¶</a></h2>
-<p>This package is tested on python 3.6 through 3.9 on a linux environment, it has been run in a macOS environment and should also work on Windows.</p>
+<p>This package is tested on python 3.10 through 3.12 on a linux environment, it has been run in a macOS environment and should also work on Windows.</p>
 </section>
 <section id="install-with-pip">
 <h2>Install With pip<a class="headerlink" href="#install-with-pip" title="Link to this heading">¶</a></h2>
-<p>Installation in your preferred python 3.6~3.9 environment should be as simple as:</p>
+<p>Installation in your preferred python 3.10~3.12 environment should be as simple as:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install cchdo.auth</span>
 </pre></div>
 </div>
@@ -267,27 +267,11 @@
 <li><p>appdirs&gt;=1.4.0</p></li>
 </ul>
 </section>
-<section id="optional-dependencies">
-<h2>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Link to this heading">¶</a></h2>
-<p>When using this library in a <a class="reference external" href="https://colab.research.google.com/">Google Colab</a> environment, getting the api key to the right place can be tricky.
-For this reason, there is an optional dependency on:</p>
-<ul class="simple">
-<li><p>colab_env&gt;=0.2.0</p></li>
-</ul>
-<p>This can be automatically installed for you using the extras syntax when installing:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install &#39;cchdo.auth[colab]&#39;</span>
-</pre></div>
-</div>
-</section>
 <section id="installation-in-an-ipython-env-like-colab">
 <h2>Installation in an IPython Env (like colab)<a class="headerlink" href="#installation-in-an-ipython-env-like-colab" title="Link to this heading">¶</a></h2>
 <p>This can be installed in a Jupyter/IPython/Google Colab environment by using the “Shell execute” <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">magic command</a>.
 Simply run this in an empty cell in the notebook:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">!pip install cchdo.auth</span>
-</pre></div>
-</div>
-<p>If you are in Google Colab, include the <code class="docutils literal notranslate"><span class="pre">colab</span></code> extra:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">!pip install &#39;cchdo.auth[colab]&#39;</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -356,7 +340,6 @@ Simply run this in an empty cell in the notebook:</p>
 <li><a class="reference internal" href="#python-requirements">Python Requirements</a></li>
 <li><a class="reference internal" href="#install-with-pip">Install With pip</a></li>
 <li><a class="reference internal" href="#dependencies">Dependencies</a></li>
-<li><a class="reference internal" href="#optional-dependencies">Optional Dependencies</a></li>
 <li><a class="reference internal" href="#installation-in-an-ipython-env-like-colab">Installation in an IPython Env (like colab)</a></li>
 </ul>
 </li>
