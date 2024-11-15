@@ -40,7 +40,8 @@ jobs:
     - name: Test typing
       run: |
         mypy -v cchdo
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+    - name: Upload coverage to Coveralls
+      uses: coverallsapp/github-action@v2.3.0
+      continue-on-error: true
       with:
         file: ./coverage.xml
