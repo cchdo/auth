@@ -62,26 +62,30 @@ The library will attempt to load the value of the envar ``CCHDO_AUTH_API_KEY``.
 
 Google Colab Config
 -------------------
-Configuring inside google colab is a little tricky due to the non persistence of the sessions.
-We also want to be able to share the notebooks without worrying about secrets leaking out, i.e. we don't want to put api keys directly in the notebooks.
-To accomplish this, there is a mechanism to load a file from google drive and inject its contents into environment variables inside the google colab session.
+The API key can be made available to google colab notebooks by use of the built in secrets feature of google colab.
 
-.. note::
+Open the secrets config by clicking on the key icon:
 
-    Since you can have multiple accounts in google colab and google drive, make sure to use the same account in both locations.
+.. figure:: secrets.*
 
-Create a text (utf8) file with the exact filename ``vars.env`` containing the following contents:
+    Secrets config menu location
 
-.. code-block:: none
+Click the "+ Add new secret" button.
 
-    COLAB_ENV = Active
-    CCHDO_AUTH_API_KEY = replace_with_apikey
+Set the secret name to ``CCHDO_AUTH_API_KEY``.
 
-Where your actual api key is in place of ``replace_with_apikey``.
+Set the secret value to your api key.
 
-Then upload this file to the "root" of your google drive, which is the location when you click on "My Drive" on the left menu/nav area of google drive.
-Do not put it anywhere else (e.g. in a folder, team drive, etc..)
-Because this file does not have a .txt extension, google drive will think it is "binary" and refuse to show you a preview when it is clicked on.
+If you do not click the "Notebook access" slider, the first time cchdo.auth tries to access the secret it will ask for permission.
 
-The first time you do something in colab which tries to find an api key, you will be walked though an authentication workflow to give the current colab session access to your google drive.
-Access to your google drive will persist until the underlying colab session is stopped, you can restart the runtime and not need to go though the authentication workflow.
+Migration from ``vars.env``
+```````````````````````````
+.. warning::
+    cchdo.auth can no longer access the env.vars file, you must migrate to the built in secrets method above.
+
+The previous way of getting secrets into google colab involved creating a vars.env file in your google drive.
+If you want to continue to use the API key contained within that vars.env, download vars.env to your computer and open it in a text editor to read the contents.
+Follow the steps above to add the value of CCHDO_AUTH_API_KEY to a google colab secret.
+The ``COLAB_ENV`` can be ignored.
+
+Delete vars.env from both your computer and your google drive once you are done.
