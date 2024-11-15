@@ -1,21 +1,17 @@
 import logging
 import os
 from configparser import ConfigParser, NoSectionError
-from typing import Optional
 
 from appdirs import AppDirs
 from requests import PreparedRequest
 from requests.auth import AuthBase
 
 try:
-    import google.colab  # noqa
+    from google.colab import userdata  # noqa
 
     COLAB = True
 except ImportError:
     COLAB = False
-
-if COLAB:
-    import colab_env  # noqa
 
 logger = logging.getLogger(__name__)
 
@@ -146,6 +142,14 @@ def get_apikey() -> str:
     """
     _migrate_uow_config()
 
+    if COLAB:
+        try:
+            return userdata.get("CCHDO_AUTH_API_KEY")
+        except userdata.SecretNotFoundError:
+            logger.warning("Could not find google colab secret 'CCHDO_AUTH_API_KEY'")
+        except userdata.NotebookAccessError:
+            logger.warning("Could access google colab secret 'CCHDO_AUTH_API_KEY'")
+
     try:
         return os.environ["CCHDO_AUTH_API_KEY"]
     except KeyError:
@@ -156,7 +160,7 @@ def get_apikey() -> str:
     except NoSectionError:
         pass
 
-    logger.warn(
+    logger.warning(
         "An API Key could not be loaded from any source, many (not all) CCHDO API calls will fail"
     )
     return ""
@@ -177,7 +181,7 @@ class CCHDOAuth(AuthBase):
     It is highly recomended that the :obj:`cchdo.auth.session.session` object be used instead of manually including this auth class
     """
 
-    def __init__(self, apikey: Optional[str] = None):
+    def __init__(self, apikey: str | None = None):
         if apikey is None:
             apikey = get_apikey()
         self._apikey = apikey
