@@ -10,6 +10,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
 
     steps:
     - uses: actions/checkout@v4
@@ -23,12 +25,9 @@ jobs:
         pip install twine build
     - name: Build Dists
       run: |
-        python -m build --source --binary . --out-dir dist
+        python -m build --sdist --wheel --outdir dist/
     - name: Test Wheel
       run: |
         cd dist && pip install $(ls *.whl)'[selftest]' && python -m pytest --pyargs cchdo.auth && twine check *
     - name: Publish Python distribution to PyPI
-      uses: pypa/gh-action-pypi-publish@master
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_PASSWORD }}
+      uses: pypa/gh-action-pypi-publish@release/v1
