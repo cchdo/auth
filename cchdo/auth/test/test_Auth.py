@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from .. import (
+from cchdo.auth import (
     CONFIG_FILE,
     _check_apikey,
     _create_config_dir,

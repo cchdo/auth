@@ -8,6 +8,8 @@ write_to_template = 'version = "{version}"'
 
 
 [tool.mypy]
+namespace_packages = true
+explicit_package_bases = true
 
 [[tool.mypy.overrides]]
 module = [
@@ -43,5 +45,5 @@ select = [
     "TID",
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["cchdo"]
