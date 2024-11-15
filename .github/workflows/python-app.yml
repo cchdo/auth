@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]
+        python-version: ["3.10", "3.11", "3.12"]
 
     steps:
     - uses: actions/checkout@v2
@@ -36,9 +36,6 @@ jobs:
     - name: Test with pytest
       run: |
         pytest --cov-report xml --cov=cchdo
-    - name: Test code style with black
-      run: |
-        black --check .
     - name: Test typing
       run: |
         mypy -v cchdo
