@@ -29,7 +29,7 @@ jobs:
 
       - name: Sphinx Build HTML docs
         working-directory: docs
-        run: make html
+        run: uv run make html
 
       - name: Upload static files as artifact
         id: deployment
