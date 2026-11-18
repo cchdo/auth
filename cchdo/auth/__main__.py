@@ -33,8 +33,7 @@ def json_edit_loop(metadata):
 
 
 @click.group()
-def cli():
-    ...
+def cli(): ...
 
 
 @cli.command()

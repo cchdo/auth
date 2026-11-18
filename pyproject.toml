@@ -55,10 +55,9 @@ dev = [
     "pytest-cov",
     "pre-commit",
     "requests-mock",
-    "mypy",
-    "types-requests",
-    "ruff",
     "ipython>=9.18.1",
+    "ty>=0.0.105",
+    "ruff>=0.17.5",
 ]
 
 [tool.mypy]
