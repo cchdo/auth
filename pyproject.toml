@@ -11,7 +11,8 @@ authors = [{name = "cchdo", email = "cchdo@ucsd.edu"}]
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.13"
 dynamic = ["version"]
-license = {text = "BSD 3-clause"}
+license = "BSD-3-Clause"
+license-files = ["LICENSE.md"]
 dependencies = [
   "requests>=2.23.0",
   "click>=7.0.0",
@@ -21,7 +22,6 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
     "Operating System :: OS Independent",
-    "License :: OSI Approved :: BSD License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.13",
