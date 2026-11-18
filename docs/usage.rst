@@ -14,7 +14,7 @@ If you haven't configured ``cchdo.auth`` yet, you will probably get the followin
 
 >>> from cchdo.auth.session import session
 An API Key could not be loaded from any source, many (not all) CCHDO API calls will fail
->>> 
+>>>
 
 If this happens, do the :ref:`configuration <Configuring>` steps and restart your python session.
 
@@ -22,7 +22,7 @@ The ``session`` object is a standard requests Session which has been configured 
 
 >>> session
 <requests.sessions.Session object at 0x7f1e2ea67a60>
->>> 
+>>>
 
 The full requests API is available on it.
 When a request is sent to the CCHDO API, authentication credentials will automatically be added.
@@ -107,3 +107,63 @@ should be changed to the following:
     from cchdo.auth.session import session as requests
 
     result = requests.get("https://cchdo.ucsd.edu/api/v1/cruise").json()
+
+
+Use With a Test Server
+----------------------
+By default, the built in session will only attach your api key when it detects that a request is being sent to CCDHO.
+This detection is now runtime configurable by modifying the ``PREFIX`` object in ``cchdo.auth.config``.
+This object is a normal python set so the mutating set operations should be used to change it.
+
+For example, if your test server is running on localhost at port 5000, you can add this prefix using the following:
+
+.. code-block:: python
+
+    from cchdo.auth.config import config
+
+    config.PREFIXES.add("http://127.0.0.1:5000/")
+    # or
+    config.PREFIXES.add("http://localhost:5000/")
+
+The added prefix much match how you are doing the actual API calls.
+
+.. code-block:: python
+
+    from cchdo.auth.config import config
+    from cchdo.auth.session import session
+
+    config.PREFIXES.add("http://127.0.0.1:5000/")
+    # The following will NOT have the API key added
+    session.get("http://localhost:5000/api/v1/cruise/all")
+
+For maximum portablity define the API endpoint as a variable and use for both modifying the PREFIXES and constructing API calls.
+
+.. code-block:: python
+
+    from cchdo.auth.config import config
+    from cchdo.auth.session import session
+
+    API_ENDPOINT = "http://127.0.0.1:5000"
+
+    config.PREFIXES.add(API_ENDPOINT)
+
+    session.get(f"{API_ENDPOINT}/api/v1/cruise/all")
+
+In an IPython enviornemnt, a local variable can be used to store the API key, keeping the API endpint and development API key in one place allows for minimal code changes between testing and production
+
+.. code-block:: python
+
+    from cchdo.auth.config import config
+    from cchdo.auth.session import session
+
+    # Keep all these in their own notebook cell
+    # to move to the production server, update API_ENDPOINT to be "https://cchdo.ucsd.edu" and
+    # remove the CCHDO_AUTH_API_KEY line entirely
+    #
+    # The CCHDO_AUTH_API_KEY variable is looked for on every request, so it can be updated at any time
+    # during a notebook session
+    API_ENDPOINT = "http://127.0.0.1:5000"
+    CCHDO_AUTH_API_KEY = "some_key"
+    config.PREFIXES.add(API_ENDPOINT)
+
+    session.get(f"{API_ENDPOINT}/api/v1/cruise/all")

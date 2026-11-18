@@ -7,8 +7,10 @@ from appdirs import AppDirs
 from requests import PreparedRequest
 from requests.auth import AuthBase
 
+from cchdo.auth import config
+
 try:
-    from google.colab import userdata  # noqa
+    from google.colab import userdata  # noqa  # ty: ignore[import-not-found]
 
     COLAB = True
 except ImportError:
@@ -145,6 +147,8 @@ def get_apikey() -> str:
 
     Checks the following in order:
 
+    * Google colab userdata object (colab secrets)
+    * A variable named "CCHDO_AUTH_API_KEY" in the ipython user namespace (jupyter notebook cell)
     * The environment variable ``CCHDO_AUTH_API_KEY``
     * The local config file, which has a platform dependent location
     """
@@ -157,6 +161,17 @@ def get_apikey() -> str:
             logger.warning("Could not find google colab secret 'CCHDO_AUTH_API_KEY'")
         except userdata.NotebookAccessError:
             logger.warning("Could access google colab secret 'CCHDO_AUTH_API_KEY'")
+
+    try:
+        from IPython import get_ipython
+
+        return get_ipython().user_ns["CCHDO_AUTH_API_KEY"]
+    except (
+        ModuleNotFoundError,  # IPython is not installed
+        AttributeError,  # this is not an IPython instance (get_ipython returned None)
+        KeyError,  # The user doesn't have CCHDO_AUTH_API_KEY defined in a cell that has been run
+    ):
+        pass
 
     try:
         return os.environ["CCHDO_AUTH_API_KEY"]
@@ -195,7 +210,7 @@ class CCHDOAuth(AuthBase):
         self._apikey = apikey
 
     def __call__(self, r: PreparedRequest) -> PreparedRequest:
-        if r.url is not None and r.url.startswith(CCHDO_PREFIX):
+        if r.url is not None and r.url.startswith(tuple(config.PREFIXES)):
             r.headers["X-Authentication-Token"] = self._apikey
 
         return r
