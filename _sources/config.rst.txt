@@ -39,6 +39,11 @@ You can create the config file from inside python.
 
 Be sure to pass in the correct apikey as a string.
 
+IPython (jupyter notebook) Cell Variable
+----------------------------------------
+In an IPython or jupyter notebook environment, a variable named ``CCHDO_AUTH_API_KEY`` will be looked for and used as the API Key if found.
+This is useful for development when you want to or need to override the file or envar configuration.
+Note that the google colab secrets will take precidence.
 
 Environment Variable Config
 ---------------------------
@@ -47,14 +52,14 @@ The library will attempt to load the value of the envar ``CCHDO_AUTH_API_KEY``.
 .. code-block::
 
     $ CCHDO_AUTH_API_KEY=test python
-    
-    Python 3.8.6 (default, Dec 18 2020, 05:24:40) 
+
+    Python 3.8.6 (default, Dec 18 2020, 05:24:40)
     [GCC 8.3.0] on linux
     Type "help", "copyright", "credits" or "license" for more information.
     >>> from cchdo.auth import get_apikey
     >>> get_apikey()
     'test'
-    >>> 
+    >>>
 
 .. warning::
 
@@ -89,3 +94,17 @@ Follow the steps above to add the value of CCHDO_AUTH_API_KEY to a google colab 
 The ``COLAB_ENV`` can be ignored.
 
 Delete vars.env from both your computer and your google drive once you are done.
+
+API Endpoint Prefixes
+---------------------
+The requests auth class works by inspecting each reqeust and, if being sent to the production cchdo URL, the api key headers are added to the reqeust.
+In a local or dev enviornemnt, the local endpoint can be added to the set of prefixes being checked so that ``cchdo.auth`` can work with the local server.
+Be aware that local servers will have different API keys and that still requires configuration.
+
+To add a prefix to the prefix set, import ``cchdo.auth.config`` and mutate the ``PREFIXES`` set using standard python set operations.
+
+.. code-block:: python
+
+    from cchdo.auth import config
+
+    config.PREFIXES.add("http://localhost:5000")

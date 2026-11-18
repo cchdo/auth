@@ -1,23 +1,23 @@
 <!doctype html>
 <html class="no-js" lang="en" data-content_root="./">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Usage" href="usage.html" /><link rel="prev" title="Installation" href="installation.html" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Usage" href="usage.html"><link rel="prev" title="Installation" href="installation.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 9.2.0 and Furo 2025.12.19 -->
         <title>Configuring - cchdo.auth documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
     
     
 
 
 <style>
   body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
   
   }
   @media not print {
@@ -144,14 +144,10 @@
   </symbol>
 </svg>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
 <a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
@@ -161,8 +157,7 @@
   <header class="mobile-header">
     <div class="header-left">
       <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
       </label>
     </div>
     <div class="header-center">
@@ -170,8 +165,7 @@
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
           <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
           <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -179,8 +173,7 @@
         </button>
       </div>
       <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
   </header>
@@ -188,7 +181,6 @@
     <div class="sidebar-container">
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
-  
   
   <span class="sidebar-brand-text">cchdo.auth  documentation</span>
   
@@ -230,8 +222,7 @@
   </a>
 </div>
 <div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -239,8 +230,7 @@
             </button>
           </div>
           <label class="toc-overlay-icon toc-content-icon" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
@@ -272,12 +262,18 @@ Once it is installed it can be run in a shell using:</p>
 <section id="using-the-api">
 <h3>Using the API<a class="headerlink" href="#using-the-api" title="Link to this heading">¶</a></h3>
 <p>You can create the config file from inside python.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth</span> <span class="kn">import</span> <span class="n">write_apikey</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">write_apikey</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_apikey</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_apikey</span><span class="p">(</span><span class="s2">"key"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Be sure to pass in the correct apikey as a string.</p>
 </section>
+</section>
+<section id="ipython-jupyter-notebook-cell-variable">
+<h2>IPython (jupyter notebook) Cell Variable<a class="headerlink" href="#ipython-jupyter-notebook-cell-variable" title="Link to this heading">¶</a></h2>
+<p>In an IPython or jupyter notebook environment, a variable named <code class="docutils literal notranslate"><span class="pre">CCHDO_AUTH_API_KEY</span></code> will be looked for and used as the API Key if found.
+This is useful for development when you want to or need to override the file or envar configuration.
+Note that the google colab secrets will take precidence.</p>
 </section>
 <section id="environment-variable-config">
 <h2>Environment Variable Config<a class="headerlink" href="#environment-variable-config" title="Link to this heading">¶</a></h2>
@@ -286,10 +282,10 @@ Once it is installed it can be run in a shell using:</p>
 
 Python 3.8.6 (default, Dec 18 2020, 05:24:40)
 [GCC 8.3.0] on linux
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+Type "help", "copyright", "credits" or "license" for more information.
 &gt;&gt;&gt; from cchdo.auth import get_apikey
 &gt;&gt;&gt; get_apikey()
-&#39;test&#39;
+'test'
 &gt;&gt;&gt;
 </pre></div>
 </div>
@@ -324,6 +320,18 @@ Follow the steps above to add the value of CCHDO_AUTH_API_KEY to a google colab 
 The <code class="docutils literal notranslate"><span class="pre">COLAB_ENV</span></code> can be ignored.</p>
 <p>Delete vars.env from both your computer and your google drive once you are done.</p>
 </section>
+</section>
+<section id="api-endpoint-prefixes">
+<h2>API Endpoint Prefixes<a class="headerlink" href="#api-endpoint-prefixes" title="Link to this heading">¶</a></h2>
+<p>The requests auth class works by inspecting each reqeust and, if being sent to the production cchdo URL, the api key headers are added to the reqeust.
+In a local or dev enviornemnt, the local endpoint can be added to the set of prefixes being checked so that <code class="docutils literal notranslate"><span class="pre">cchdo.auth</span></code> can work with the local server.
+Be aware that local servers will have different API keys and that still requires configuration.</p>
+<p>To add a prefix to the prefix set, import <code class="docutils literal notranslate"><span class="pre">cchdo.auth.config</span></code> and mutate the <code class="docutils literal notranslate"><span class="pre">PREFIXES</span></code> set using standard python set operations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">PREFIXES</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"http://localhost:5000"</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -388,11 +396,13 @@ The <code class="docutils literal notranslate"><span class="pre">COLAB_ENV</span
 <li><a class="reference internal" href="#using-the-api">Using the API</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#ipython-jupyter-notebook-cell-variable">IPython (jupyter notebook) Cell Variable</a></li>
 <li><a class="reference internal" href="#environment-variable-config">Environment Variable Config</a></li>
 <li><a class="reference internal" href="#google-colab-config">Google Colab Config</a><ul>
 <li><a class="reference internal" href="#migration-from-vars-env">Migration from <code class="docutils literal notranslate"><span class="pre">vars.env</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#api-endpoint-prefixes">API Endpoint Prefixes</a></li>
 </ul>
 </li>
 </ul>
@@ -405,8 +415,8 @@ The <code class="docutils literal notranslate"><span class="pre">COLAB_ENV</span
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
     </body>
 </html>

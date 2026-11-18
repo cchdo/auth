@@ -1,23 +1,23 @@
 <!doctype html>
 <html class="no-js" lang="en" data-content_root="./">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="API Reference" href="api.html" /><link rel="prev" title="Configuring" href="config.html" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="API Reference" href="api.html"><link rel="prev" title="Configuring" href="config.html">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 9.2.0 and Furo 2025.12.19 -->
         <title>Usage - cchdo.auth documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
     
     
 
 
 <style>
   body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
   
   }
   @media not print {
@@ -144,14 +144,10 @@
   </symbol>
 </svg>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
 
 <a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
@@ -161,8 +157,7 @@
   <header class="mobile-header">
     <div class="header-left">
       <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
       </label>
     </div>
     <div class="header-center">
@@ -170,8 +165,7 @@
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
           <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
           <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -179,8 +173,7 @@
         </button>
       </div>
       <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
   </header>
@@ -188,7 +181,6 @@
     <div class="sidebar-container">
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
-  
   
   <span class="sidebar-brand-text">cchdo.auth  documentation</span>
   
@@ -230,8 +222,7 @@
   </a>
 </div>
 <div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
@@ -239,8 +230,7 @@
             </button>
           </div>
           <label class="toc-overlay-icon toc-content-icon" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
@@ -250,12 +240,12 @@
 <section id="preconfigured-session">
 <h2>Preconfigured Session<a class="headerlink" href="#preconfigured-session" title="Link to this heading">¶</a></h2>
 <p>The recommended way of using <code class="docutils literal notranslate"><span class="pre">cchdo.auth</span></code> is with the preconfigured <code class="docutils literal notranslate"><span class="pre">session</span></code> object.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth.session</span> <span class="kn">import</span> <span class="n">session</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span>
 <span class="gp">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
 <p>If you haven’t configured <code class="docutils literal notranslate"><span class="pre">cchdo.auth</span></code> yet, you will probably get the following warning:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth.session</span> <span class="kn">import</span> <span class="n">session</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span>
 <span class="go">An API Key could not be loaded from any source, many (not all) CCHDO API calls will fail</span>
 <span class="gp">&gt;&gt;&gt;</span>
 </pre></div>
@@ -269,7 +259,7 @@
 </div>
 <p>The full requests API is available on it.
 When a request is sent to the CCHDO API, authentication credentials will automatically be added.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://cchdo.ucsd.edu/api/v1/cruise&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"https://cchdo.ucsd.edu/api/v1/cruise"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -285,17 +275,17 @@ If you need to make authenticated requests to non CCHDO URIs, directly use <code
 <section id="direct-auth-class-usage">
 <h2>Direct Auth Class Usage<a class="headerlink" href="#direct-auth-class-usage" title="Link to this heading">¶</a></h2>
 <p>The custom Auth class can also be used with <code class="docutils literal notranslate"><span class="pre">requests</span></code>.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth</span> <span class="kn">import</span> <span class="n">CCHDOAuth</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">CCHDOAuth</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cchdo_auth</span> <span class="o">=</span> <span class="n">CCHDOAuth</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://cchdo.ucsd.edu/api/v1/cruise&quot;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">cchdo_auth</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"https://cchdo.ucsd.edu/api/v1/cruise"</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">cchdo_auth</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This is more useful if you need to override the API Key for some reason:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth</span> <span class="kn">import</span> <span class="n">CCHDOAuth</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cchdo_auth</span> <span class="o">=</span> <span class="n">CCHDOAuth</span><span class="p">(</span><span class="s2">&quot;custom_api_key&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://cchdo.ucsd.edu/api/v1/cruise&quot;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">cchdo_auth</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">CCHDOAuth</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cchdo_auth</span> <span class="o">=</span> <span class="n">CCHDOAuth</span><span class="p">(</span><span class="s2">"custom_api_key"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"https://cchdo.ucsd.edu/api/v1/cruise"</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">cchdo_auth</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -307,23 +297,23 @@ If you need to make authenticated requests to non CCHDO URIs, directly use <code
 <p>All get, post, put, patch, etc… method calls need to be switched to use the session object.
 This can be accomplished somewhat easily by aliasing the import.
 For example, if you do something like the following:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">r</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;some_api_call&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">r</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"some_api_call"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can simply alias the session object:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth.session</span> <span class="kn">import</span> <span class="n">session</span> <span class="k">as</span> <span class="n">r</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;some_api_call&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span> <span class="k">as</span> <span class="n">r</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"some_api_call"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you use requests directly:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;some_api_call&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"some_api_call"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Just alias the session to requests:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cchdo.auth.session</span> <span class="kn">import</span> <span class="n">session</span> <span class="k">as</span> <span class="n">requests</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;some_api_call&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span> <span class="k">as</span> <span class="n">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"some_api_call"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -332,21 +322,72 @@ For example, if you do something like the following:</p>
 <p>Since the preconfigured <code class="docutils literal notranslate"><span class="pre">session</span></code> object will handle putting http headers in the right place, you need to remove all existing API auth machinery from existing code.
 This will most likely result in less code since the relevant parts just need to be deleted.</p>
 <p>For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;some_key here&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">"some_key here"</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://cchdo.ucsd.edu/api/v1/cruise&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;X-Authentication-Token&quot;</span><span class="p">:</span> <span class="n">API_KEY</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"https://cchdo.ucsd.edu/api/v1/cruise"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">"X-Authentication-Token"</span><span class="p">:</span> <span class="n">API_KEY</span>
 <span class="p">})</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>should be changed to the following:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cchdo.auth.session</span> <span class="kn">import</span> <span class="n">session</span> <span class="k">as</span> <span class="n">requests</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span> <span class="k">as</span> <span class="n">requests</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://cchdo.ucsd.edu/api/v1/cruise&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"https://cchdo.ucsd.edu/api/v1/cruise"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="use-with-a-test-server">
+<h2>Use With a Test Server<a class="headerlink" href="#use-with-a-test-server" title="Link to this heading">¶</a></h2>
+<p>By default, the built in session will only attach your api key when it detects that a request is being sent to CCDHO.
+This detection is now runtime configurable by modifying the <code class="docutils literal notranslate"><span class="pre">PREFIX</span></code> object in <code class="docutils literal notranslate"><span class="pre">cchdo.auth.config</span></code>.
+This object is a normal python set so the mutating set operations should be used to change it.</p>
+<p>For example, if your test server is running on localhost at port 5000, you can add this prefix using the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">PREFIXES</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"http://127.0.0.1:5000/"</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="n">config</span><span class="o">.</span><span class="n">PREFIXES</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"http://localhost:5000/"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The added prefix much match how you are doing the actual API calls.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">PREFIXES</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"http://127.0.0.1:5000/"</span><span class="p">)</span>
+<span class="c1"># The following will NOT have the API key added</span>
+<span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"http://localhost:5000/api/v1/cruise/all"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For maximum portablity define the API endpoint as a variable and use for both modifying the PREFIXES and constructing API calls.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span>
+
+<span class="n">API_ENDPOINT</span> <span class="o">=</span> <span class="s2">"http://127.0.0.1:5000"</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">PREFIXES</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">API_ENDPOINT</span><span class="p">)</span>
+
+<span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">API_ENDPOINT</span><span class="si">}</span><span class="s2">/api/v1/cruise/all"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In an IPython enviornemnt, a local variable can be used to store the API key, keeping the API endpint and development API key in one place allows for minimal code changes between testing and production</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cchdo.auth.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">session</span>
+
+<span class="c1"># Keep all these in their own notebook cell</span>
+<span class="c1"># to move to the production server, update API_ENDPOINT to be "https://cchdo.ucsd.edu" and</span>
+<span class="c1"># remove the CCHDO_AUTH_API_KEY line entirely</span>
+<span class="c1">#</span>
+<span class="c1"># The CCHDO_AUTH_API_KEY variable is looked for on every request, so it can be updated at any time</span>
+<span class="c1"># during a notebook session</span>
+<span class="n">API_ENDPOINT</span> <span class="o">=</span> <span class="s2">"http://127.0.0.1:5000"</span>
+<span class="n">CCHDO_AUTH_API_KEY</span> <span class="o">=</span> <span class="s2">"some_key"</span>
+<span class="n">config</span><span class="o">.</span><span class="n">PREFIXES</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">API_ENDPOINT</span><span class="p">)</span>
+
+<span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">API_ENDPOINT</span><span class="si">}</span><span class="s2">/api/v1/cruise/all"</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -413,6 +454,7 @@ This will most likely result in less code since the relevant parts just need to 
 <li><a class="reference internal" href="#remove-existing-auth-code">Remove Existing Auth Code</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#use-with-a-test-server">Use With a Test Server</a></li>
 </ul>
 </li>
 </ul>
@@ -425,8 +467,8 @@ This will most likely result in less code since the relevant parts just need to 
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
     </body>
 </html>
