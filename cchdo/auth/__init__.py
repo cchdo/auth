@@ -205,12 +205,11 @@ class CCHDOAuth(AuthBase):
     """
 
     def __init__(self, apikey: str | None = None):
-        if apikey is None:
-            apikey = get_apikey()
         self._apikey = apikey
 
     def __call__(self, r: PreparedRequest) -> PreparedRequest:
+        apikey = self._apikey if self._apikey is not None else get_apikey()
         if r.url is not None and r.url.startswith(tuple(config.PREFIXES)):
-            r.headers["X-Authentication-Token"] = self._apikey
+            r.headers["X-Authentication-Token"] = apikey
 
         return r
